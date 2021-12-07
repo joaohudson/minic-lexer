@@ -5,7 +5,6 @@ const data = fs.readFileSync(path.join(__dirname, 'teste.txt'), 'utf-8');
 
 const KEY_WORDS_REGEX = /(printint|int|printf|return)/g
 
-//const IDENTIFIER_REGEX = /(^[a-zA-Z][0-9]|[a-zA-Z]+[0-9]*)/g
 const IDENTIFIER_REGEX = /[_|a-zA-Z][a-zA-Z0-9]*/g
 
 
