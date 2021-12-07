@@ -9,21 +9,33 @@ const KEY_WORDS_REGEX = /(printint|int|printf|return)/g
 const IDENTIFIER_REGEX = /[_|a-zA-Z][a-zA-Z0-9]*/g
 
 
-function readTokens(regex, data){
+function readTokens(regexList, data){
+
+    const map = {};
+    let i = 0;
 
     while(true){
+        const regex = regexList[i];
         const result = regex.exec(data);
 
         if(!result){
-            break;
+            i++;
+            if(i >= regexList.length){
+                break;
+            }else{
+                continue;
+            }
         }
 
         const index = result.index;
         const word = result[0];
-        console.log('index: ', index);
-        console.log('result: ', word);
-
+        map[index] = word;
     }
+
+    const indexers = Object.keys(map).sort((a, b) => a - b);
+    const tokens = indexers.map((index) => map[index]);
+
+    console.log(tokens);
 }
 
-readTokens(IDENTIFIER_REGEX ,data);
+readTokens([KEY_WORDS_REGEX, IDENTIFIER_REGEX], data);
