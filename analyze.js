@@ -66,9 +66,9 @@ module.exports = {
     analyzers: 
     [
         KEY_WORDS_ANALYZE,
+        STRING_LITERAL_ANALYZE,
         IDENTIFIER_ANALYZE,
         INTEGER_LITERAL_ANALYZE,
-        STRING_LITERAL_ANALYZE,
         OPERATOR_ANALYZE,
         COMMENT_ANALYZE
     ]
