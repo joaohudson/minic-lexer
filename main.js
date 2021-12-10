@@ -19,6 +19,7 @@ function readTokens(analyzeList, data){
 
             const index = result.index;
             const word = result[0];
+            data = data.substr(0, index) + data.substr(index + word.length);
             map[index] = createToken(word);
         }
     }
