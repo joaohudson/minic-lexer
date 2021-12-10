@@ -7,24 +7,20 @@ const data = fs.readFileSync(path.join(__dirname, 'teste.txt'), 'utf-8');
 function readTokens(analyzeList, data){
 
     const map = {};
-    let i = 0;
 
-    while(true){
-        const {regex, createToken} = analyzeList[i];
-        const result = regex.exec(data);
+    for(const {regex, createToken} of analyzeList){
 
-        if(!result){
-            i++;
-            if(i >= analyzeList.length){
+        while(true){
+            const result = regex.exec(data);
+            
+            if(!result){
                 break;
-            }else{
-                continue;
             }
-        }
 
-        const index = result.index;
-        const word = result[0];
-        map[index] = createToken(word);
+            const index = result.index;
+            const word = result[0];
+            map[index] = createToken(word);
+        }
     }
 
     const indexers = Object.keys(map).sort((a, b) => a - b);
