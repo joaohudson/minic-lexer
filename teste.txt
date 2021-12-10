@@ -1,1 +1,2 @@
-int _6opa123 printint hum 123casa23asd
+int _6opa123 printint hum 123casa23asd 1212 -9 "alskj" + - / *
+//comentando

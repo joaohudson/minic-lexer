@@ -1,25 +1,21 @@
 const fs = require('fs');
 const path = require('path');
+const {analyzers} = require('./analyze');
 
 const data = fs.readFileSync(path.join(__dirname, 'teste.txt'), 'utf-8');
 
-const KEY_WORDS_REGEX = /(printint|int|printf|return)/g
-
-const IDENTIFIER_REGEX = /[_|a-zA-Z][a-zA-Z0-9]*/g
-
-
-function readTokens(regexList, data){
+function readTokens(analyzeList, data){
 
     const map = {};
     let i = 0;
 
     while(true){
-        const regex = regexList[i];
+        const {regex, createToken} = analyzeList[i];
         const result = regex.exec(data);
 
         if(!result){
             i++;
-            if(i >= regexList.length){
+            if(i >= analyzeList.length){
                 break;
             }else{
                 continue;
@@ -28,7 +24,7 @@ function readTokens(regexList, data){
 
         const index = result.index;
         const word = result[0];
-        map[index] = word;
+        map[index] = createToken(word);
     }
 
     const indexers = Object.keys(map).sort((a, b) => a - b);
@@ -37,4 +33,4 @@ function readTokens(regexList, data){
     console.log(tokens);
 }
 
-readTokens([KEY_WORDS_REGEX, IDENTIFIER_REGEX], data);
+readTokens(analyzers, data);
