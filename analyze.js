@@ -29,7 +29,7 @@ const INTEGER_LITERAL_ANALYZE = {
         type: TokenType.INTEGER_LITERAL,
         value: new Number(str)
     }),
-    regex: /(-)*[0-9]+/g
+    regex: /-[0-9]+|[0-9]+/g
 }
 
 const STRING_LITERAL_ANALYZE = {
